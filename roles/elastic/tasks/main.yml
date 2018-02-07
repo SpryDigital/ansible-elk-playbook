@@ -1,0 +1,17 @@
+---
+#
+# Add Elastic repository
+#
+
+# Add Elastic apt key
+
+- name: Add Elastic apt key
+  apt_key:
+   url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+   state: present
+
+# Add the Elastics apt repo.
+- name: Adding Elastic repo
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/6.x/apt stable main
+    state: present
