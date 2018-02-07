@@ -1,0 +1,10 @@
+---
+#
+# Install Logstash
+#
+
+- name: Install Kibana with apt
+  apt:
+   name: logstash
+   update_cache: yes
+ 
