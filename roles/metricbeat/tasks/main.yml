@@ -7,11 +7,26 @@
 
 - name: Install Metricbeat with apt
   apt:
-   name: metricbeat
-   update_cache: yes
-    
-# Starting Metricbeat
+    name: metricbeat
+    state: latest
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
 
+
+- name: Install metricbeat with yum
+  yum:
+    name: metricbeat
+    state: latest
+    update_cache: yes
+  when: ansible_os_family == 'RedHat'
+
+# Setup configuration file
+- name: Setup Metricbeat configuration file
+  template:
+    src:
+    dest:
+
+# Starting Metricbeat
 - name: Starting Metricbeat
   service:
    name: metricbeat
