@@ -3,10 +3,14 @@
 # Playbook to install the ELK stack + Beats
 #
 - hosts: elk
-  remote_user: root
   roles:
   - { role: elasticsearch }
   - { role: logstash }
   - { role: kibana }
+
+
+- hosts: monitored
+  roles:
+  - { role: metricbeat }
   
 
