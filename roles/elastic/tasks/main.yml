@@ -9,14 +9,14 @@
   apt_key:
     url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
     state: present
-  when: (ansible_os_family == "Debian")
+  when: ansible_os_family == "Debian"
 
 # Add the Elastics apt repo.
 - name: Adding Elastic repo
   apt_repository:
     repo: deb https://artifacts.elastic.co/packages/6.x/apt stable main
     state: present
-    when: (ansible_os_family == "Debian")
+  when: ansible_os_family == "Debian"
 
 
 # Add Elastic Yum Key
@@ -24,14 +24,15 @@
   rpm_key:
     state: present
     key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-  when: (ansible_os_family == "RedHat")
+  when: ansible_os_family == "RedHat"
 
 # Add Elastic Yum Repository
 - name: Add Elastic yum repository
-  yum_respository:
-    name: Elastic repository for 6.x packages
+  yum_repository:
+    name: elastic-6.x
+    description: Elastic 6.x series repository
     baseurl: https://artifacts.elastic.co/packages/6.x/yum
     gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     gpgcheck: yes
     enabled: yes
-  when: (ansible_os_family == "RedHat")
+  when: ansible_os_family == "RedHat"
